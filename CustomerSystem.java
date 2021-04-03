@@ -4,7 +4,7 @@
 
 
 import java.util.Scanner;
-// More packages may be imported in the space below
+// More packages may be imported in the space below.
 
 class CustomerSystem{
     public static void main(String[] args){
