@@ -57,7 +57,10 @@ class CustomerSystem{
     * This method may also be broken down further depending on your algorithm
     */
     public static void enterCustomerInfo() {
-            
+            System.out.println("What is your first name? ");
+            System.out.println("What is your last name? ");
+            System.out.println("What is your postal code? ");
+            System.out.println("What is your Credit Card num? ");
     }
     /*
     * This method may be edited to achieve the task however you like.
@@ -71,7 +74,7 @@ class CustomerSystem{
     * The method may not nesessarily be a void return type
     * This method may also be broken down further depending on your algorithm
     */
-    public static void validateCreditCard(){
+    public static void validateCreditCard(cardNum){
 
 
     }
