@@ -57,10 +57,18 @@ class CustomerSystem{
     * This method may also be broken down further depending on your algorithm
     */
     public static void enterCustomerInfo() {
-            System.out.println("What is your first name? ");
-            System.out.println("What is your last name? ");
-            System.out.println("What is your postal code? ");
-            System.out.println("What is your Credit Card num? ");
+        Scanner reader = new Scanner(System.in);
+        System.out.println("What is your first name? ");
+        String firstName = reader.nextLine(); 
+        System.out.println("What is your last name? ");
+        String lastName = reader.nextLine();
+        System.out.println("What is your postal code? ");
+        String postalCode = reader.nextLine();
+        System.out.println("What is your Credit Card num? ");
+        String cardNum = reader.nextLine(); 
+        cardNum = cardNum.replaceAll("\\s", "");
+        validateCreditCard(cardNum);
+        reader.close();;
     }
     /*
     * This method may be edited to achieve the task however you like.
@@ -74,9 +82,56 @@ class CustomerSystem{
     * The method may not nesessarily be a void return type
     * This method may also be broken down further depending on your algorithm
     */
-    public static void validateCreditCard(){
-
-
+    public static void validateCreditCard(String cardNum){
+        int oddReverseSum = 0; 
+        int evenReverseSum = 0; 
+        int Digit1 = 0;
+        int Digit2 = 0;
+        int partialEvenSum = 0; 
+        int unchangedEvenSum = 0; 
+        int SumOfNewEvenDigits = 0; 
+        int indexval=cardNum.length()-1;
+        String cardReverse="";
+        int totalSum = 0; 
+        
+        for(int i=0;i<cardNum.length();i++){
+            cardReverse = cardReverse + cardNum.charAt(indexval); 
+            indexval=indexval-1 ;             
+             
+        }
+        //1234
+        System.out.println(cardReverse);
+       
+        for(int j=0; j < cardReverse.length() ; j ++){
+            
+            if (j % 2 == 0){
+                char oddReverse = cardReverse.charAt(j);
+                oddReverseSum += Character.getNumericValue(oddReverse);
+                //oddReverseSum += oddReverse;  
+            }
+            
+            if (j % 2 != 0){ 
+                char evenReverse = cardReverse.charAt(j); 
+                System.out.print(evenReverse + " , ");
+                evenReverseSum = Character.getNumericValue(evenReverse);
+                evenReverseSum = evenReverseSum * 2; 
+                
+                if(evenReverseSum > 9){
+                    Digit1 = evenReverseSum % 10; 
+                    Digit2 = evenReverseSum / 10; 
+                    int partialSum = Digit1 + Digit2;
+                    partialEvenSum += partialSum;
+                }
+                else if(evenReverseSum <= 9){ 
+                    unchangedEvenSum += evenReverseSum;
+                }
+                SumOfNewEvenDigits = unchangedEvenSum + partialEvenSum;
+            }
+        }
+        System.out.println("The sum of the odd digits is: " + oddReverseSum); 
+        System.out.println("The sum of the Even digits is: " + SumOfNewEvenDigits);
+        totalSum = oddReverseSum + SumOfNewEvenDigits; 
+        System.out.print("TotalSum is: " + totalSum);
     }
     /*
     * This method may be edited to achieve the task however you like.
