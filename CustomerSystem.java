@@ -56,6 +56,7 @@ class CustomerSystem{
     * The method may not nesessarily be a void return type
     * This method may also be broken down further depending on your algorithm
     */
+    
     public static void enterCustomerInfo() {
         Scanner reader = new Scanner(System.in);
         System.out.println("What is your first name? ");
@@ -64,12 +65,14 @@ class CustomerSystem{
         String lastName = reader.nextLine();
         System.out.println("What is your postal code? ");
         String postalCode = reader.nextLine();
-        System.out.println("What is your Credit Card num? ");
-        String cardNum = reader.nextLine(); 
-        cardNum = cardNum.replaceAll("\\s", "");
-        validateCreditCard(cardNum);
-        reader.close();;
+        creditCard();
+       
+        //System.out.println(validCreditCard);
+        
+        reader.close(); 
+        
     }
+    
     /*
     * This method may be edited to achieve the task however you like.
     * The method may not nesessarily be a void return type
@@ -82,7 +85,7 @@ class CustomerSystem{
     * The method may not nesessarily be a void return type
     * This method may also be broken down further depending on your algorithm
     */
-    public static void validateCreditCard(String cardNum){
+    public static String validateCreditCard(String cardNum){
         int oddReverseSum = 0; 
         int evenReverseSum = 0; 
         int Digit1 = 0;
@@ -90,16 +93,16 @@ class CustomerSystem{
         int partialEvenSum = 0; 
         int unchangedEvenSum = 0; 
         int SumOfNewEvenDigits = 0; 
-        int indexval=cardNum.length()-1;
+        int indexValue=cardNum.length()-1;
         String cardReverse="";
         int totalSum = 0; 
         
         for(int i=0;i<cardNum.length();i++){
-            cardReverse = cardReverse + cardNum.charAt(indexval); 
-            indexval=indexval-1 ;             
+            cardReverse = cardReverse + cardNum.charAt(indexValue); 
+            indexValue=indexValue-1 ;             
              
         }
-        //1234
+
         System.out.println(cardReverse);
        
         for(int j=0; j < cardReverse.length() ; j ++){
@@ -131,7 +134,26 @@ class CustomerSystem{
         System.out.println("The sum of the odd digits is: " + oddReverseSum); 
         System.out.println("The sum of the Even digits is: " + SumOfNewEvenDigits);
         totalSum = oddReverseSum + SumOfNewEvenDigits; 
-        System.out.print("TotalSum is: " + totalSum);
+        System.out.println("TotalSum is: " + totalSum);
+        String cardIndex = Integer.toString(totalSum);
+        char lastIndex = cardIndex.charAt(cardIndex.length() -1);
+        int lastIndexNum = Character.getNumericValue(lastIndex);
+        System.out.println(lastIndex);
+        
+        
+        String validCreditCard= "";
+        if(lastIndexNum != 0){ 
+            System.out.println("Your Card Number is invalid, please re-enter. ");
+            creditCard();
+        }
+        else if(lastIndexNum == 0){
+            
+            System.out.println("Your Card is Valid. "); 
+            validCreditCard = cardNum;
+        } 
+        System.out.println(validCreditCard);
+        return(validCreditCard);
+        
     }
     /*
     * This method may be edited to achieve the task however you like.
@@ -143,4 +165,19 @@ class CustomerSystem{
     /*******************************************************************
     *       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         *
     *******************************************************************/
-}
+    public static void creditCard(){
+        Scanner reader = new Scanner(System.in);
+        System.out.println("What is your Credit Card Number? ");
+        String cardNum = reader.nextLine(); 
+        cardNum = cardNum.replaceAll("\\s", "");
+        if(cardNum.length() < 9 ){
+            System.out.println("Your Card Number is invalid. Number must be at least 9 digits. Please re-enter. ");
+            creditCard();
+        }
+        else if(cardNum.length() >= 9){
+            validateCreditCard(cardNum);   
+        }
+        reader.close();
+    }
+    
+}   
