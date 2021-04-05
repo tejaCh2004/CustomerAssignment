@@ -74,7 +74,7 @@ class CustomerSystem{
     * The method may not nesessarily be a void return type
     * This method may also be broken down further depending on your algorithm
     */
-    public static void validateCreditCard(cardNum){
+    public static void validateCreditCard(){
 
 
     }
