@@ -17,7 +17,7 @@ class CustomerSystem{
 
         // More variables for the main may be declared in the space below
 
-
+        
         do{
             printMenu();                                    // Printing out the main menu
             userInput = reader.nextLine();                  // User selection from the menu
@@ -41,6 +41,7 @@ class CustomerSystem{
         reader.close();
         System.out.println("Program Terminated");
     }
+    
     public static void printMenu(){
         System.out.println("Customer and Sales System\n"
         .concat("1. Enter Customer Information\n")
@@ -69,7 +70,7 @@ class CustomerSystem{
        
         //System.out.println(validCreditCard);
         
-        reader.close(); 
+       // reader1.close(); 
         
     }
     
@@ -138,7 +139,7 @@ class CustomerSystem{
         String cardIndex = Integer.toString(totalSum);
         char lastIndex = cardIndex.charAt(cardIndex.length() -1);
         int lastIndexNum = Character.getNumericValue(lastIndex);
-        System.out.println(lastIndex);
+       // System.out.println(lastIndex);
         
         
         String validCreditCard= "";
@@ -175,9 +176,10 @@ class CustomerSystem{
             creditCard();
         }
         else if(cardNum.length() >= 9){
-            validateCreditCard(cardNum);   
+           String validCreditCard=validateCreditCard(cardNum); 
+           System.out.println(validCreditCard);  
         }
-        reader.close();
+       // reader2.close();
     }
     
-}   
+} 
