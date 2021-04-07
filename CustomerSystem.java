@@ -104,7 +104,7 @@ class CustomerSystem{
              
         }
 
-        System.out.println(cardReverse);
+        //System.out.println(cardReverse);
        
         for(int j=0; j < cardReverse.length() ; j ++){
             
@@ -116,7 +116,7 @@ class CustomerSystem{
             
             if (j % 2 != 0){ 
                 char evenReverse = cardReverse.charAt(j); 
-                System.out.print(evenReverse + " , ");
+                //System.out.print(evenReverse + " , ");
                 evenReverseSum = Character.getNumericValue(evenReverse);
                 evenReverseSum = evenReverseSum * 2; 
                 
@@ -132,10 +132,10 @@ class CustomerSystem{
                 SumOfNewEvenDigits = unchangedEvenSum + partialEvenSum;
             }
         }
-        System.out.println("The sum of the odd digits is: " + oddReverseSum); 
-        System.out.println("The sum of the Even digits is: " + SumOfNewEvenDigits);
+        //System.out.println("The sum of the odd digits is: " + oddReverseSum); 
+        //System.out.println("The sum of the Even digits is: " + SumOfNewEvenDigits);
         totalSum = oddReverseSum + SumOfNewEvenDigits; 
-        System.out.println("TotalSum is: " + totalSum);
+        //System.out.println("TotalSum is: " + totalSum);
         String cardIndex = Integer.toString(totalSum);
         char lastIndex = cardIndex.charAt(cardIndex.length() -1);
         int lastIndexNum = Character.getNumericValue(lastIndex);
@@ -152,7 +152,7 @@ class CustomerSystem{
             System.out.println("Your Card is Valid. "); 
             validCreditCard = cardNum;
         } 
-        System.out.println(validCreditCard);
+        //System.out.println(validCreditCard);
         return(validCreditCard);
         
     }
@@ -177,7 +177,7 @@ class CustomerSystem{
         }
         else if(cardNum.length() >= 9){
            String validCreditCard=validateCreditCard(cardNum); 
-           System.out.println(validCreditCard);  
+           //System.out.println(validCreditCard);  
         }
        // reader2.close();
     }
