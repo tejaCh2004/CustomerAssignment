@@ -15,7 +15,7 @@ class CustomerSystem{
         generateCustomerOption = "2";
         exitCondition = "9";
 
-        // More variables for the main may be declared in the space below
+        // More variables for the main may be declared in the space below.
 
         
         do{
