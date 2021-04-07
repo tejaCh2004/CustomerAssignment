@@ -91,12 +91,16 @@ class CustomerSystem{
     * This method may also be broken down further depending on your algorithm
     */
     public static void validatePostalCode(String postalCode){
-
+	//generate method for validating postal code
+	    
+	//identify csv file name and declare variables for scanner	    
         String fileName = "postal_codes.csv";
         File file = new File(fileName);
         String newString;
         String tryPC= postalCode;
         String validity= "";
+	
+	//check postal code validity using try, catch, finally
         try{
             Scanner inputStream = new Scanner(file);
 
@@ -196,9 +200,11 @@ class CustomerSystem{
     * This method may also be broken down further depending on your algorithm
     */
     public static void generateCustomerDataFile(){
-
+	//generate method for generating customer csv data file
+	    
         PrintWriter savedData = null;
 
+	//generate data file using try and catch
         try {
             savedData = new PrintWriter(new File("customerDataFile.csv"));
         } catch (FileNotFoundException e) {
