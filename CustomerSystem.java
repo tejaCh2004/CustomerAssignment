@@ -5,8 +5,19 @@
 
 import java.util.Scanner;
 // More packages may be imported in the space below.
+import java.io.FileNotFoundException;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.File;
 
 class CustomerSystem{
+    static String firstName;
+    static String lastName;
+    static String postalCode;
+    static String cardNum;
+	
     public static void main(String[] args){
         // Please do not edit any of these variables
         Scanner reader = new Scanner(System.in);
@@ -61,11 +72,11 @@ class CustomerSystem{
     public static void enterCustomerInfo() {
         Scanner reader = new Scanner(System.in);
         System.out.println("What is your first name? ");
-        String firstName = reader.nextLine(); 
+        firstName = reader.nextLine(); 
         System.out.println("What is your last name? ");
-        String lastName = reader.nextLine();
+        lastName = reader.nextLine();
         System.out.println("What is your postal code? ");
-        String postalCode = reader.nextLine();
+        postalCode = reader.nextLine();
         creditCard();
        
         //System.out.println(validCreditCard);
@@ -79,7 +90,30 @@ class CustomerSystem{
     * The method may not nesessarily be a void return type
     * This method may also be broken down further depending on your algorithm
     */
-    public static void validatePostalCode(){
+    public static void validatePostalCode(String postalCode){
+
+        String fileName = "postal_codes.csv";
+        File file = new File(fileName);
+        String newString;
+        String tryPC= postalCode;
+        String validity= "";
+        try{
+            Scanner inputStream = new Scanner(file);
+
+            while (inputStream.hasNext()){
+                String data = inputStream.next();
+                newString = data.substring(0,3);
+                if(tryPC.equals(newString)){
+                    validity = "Valid";
+                    break;
+                }
+            }
+            System.out.println("Your Postal Code is "+ validity + ".");
+            inputStream.close();
+            
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } 
     }
     /*
     * This method may be edited to achieve the task however you like.
@@ -162,7 +196,21 @@ class CustomerSystem{
     * This method may also be broken down further depending on your algorithm
     */
     public static void generateCustomerDataFile(){
+
+        PrintWriter savedData = null;
+
+        try {
+            savedData = new PrintWriter(new File("customerDataFile.csv"));
+        } catch (FileNotFoundException e) {
+            System.out.println("Customer Data File cannot be generated.");
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(firstName + ", " + lastName + ", " + postalCode + ", " + cardNum);
+        savedData.write(sb.toString());
+        savedData.close();
+        System.out.println("Customer Data File has been generated.");
     }
+	
     /*******************************************************************
     *       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         *
     *******************************************************************/
