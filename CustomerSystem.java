@@ -6,9 +6,9 @@
 import java.util.Scanner;
 // More packages may be imported in the space below.
 import java.io.FileNotFoundException;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+//import java.io.BufferedReader;
+//import java.io.FileReader;
+//import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.File;
 
@@ -19,6 +19,7 @@ class CustomerSystem{
     static String city;
     static String postalCode;
 	static String validCreditCard;
+    static Scanner reader1 = new Scanner(System.in);
     public static void main(String[] args){
         // Please do not edit any of these variables
         Scanner reader = new Scanner(System.in);
@@ -51,6 +52,7 @@ class CustomerSystem{
         } while (!userInput.equals(exitCondition));         // Exits once the user types 
         
         reader.close();
+        reader1.close();
         System.out.println("Program Terminated");
     }
     
@@ -65,27 +67,25 @@ class CustomerSystem{
         );
     }
     /*
-    * This method may be edited to achieve the task however you like.
-    * The method may not nesessarily be a void return type
+    * Author : Teja 
+    * 
     * This method may also be broken down further depending on your algorithm
     */
     
     public static void enterCustomerInfo() {
         //User Inputs 
-        Scanner reader = new Scanner(System.in);
+        //Scanner reader = new Scanner(System.in);
         System.out.println("What is your first name? ");
-        firstName = reader.nextLine(); 
+        firstName = reader1.nextLine(); 
         System.out.println("What is your last name? ");
-        lastName = reader.nextLine();
+        lastName = reader1.nextLine();
         System.out.println("Please Enter Your City ");
-        city = reader.nextLine();
+        city = reader1.nextLine();
         System.out.println("What is your postal code? ");
-        postalCode = reader.nextLine();
+        postalCode = reader1.nextLine();
         validatePostalCode(postalCode);
         //call method creditCard()
-        creditCard();
-         
-        
+        creditCard();    
     }
     
     /*
@@ -240,10 +240,10 @@ class CustomerSystem{
     *       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         *
     *******************************************************************/
     public static void creditCard(){
-        Scanner reader = new Scanner(System.in);
+        //Scanner reader = new Scanner(System.in);
         System.out.println("What is your Credit Card Number? ");
         //User inputs his/her credit card number  
-        String cardNum = reader.nextLine(); 
+        String cardNum = reader1.nextLine(); 
         //Remove spaces, increase the use them
         cardNum = cardNum.replaceAll("\\s", "");
         //Card must be at least 9 characters long 
