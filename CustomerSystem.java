@@ -228,7 +228,6 @@ class CustomerSystem{
         }
         //create stringbuilder to build new strings
         StringBuilder sb = new StringBuilder();
-        sb.append(firstName + ", " + lastName + ", " + postalCode + ", " + validCreditCard);
         //print out saved data
         sb.append(firstName + ", " + lastName + ", " + city + ", " + postalCode + ", " + validCreditCard);
         savedData.write(sb.toString());
