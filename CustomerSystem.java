@@ -6,9 +6,6 @@
 import java.util.Scanner;
 // More packages may be imported in the space below.
 import java.io.FileNotFoundException;
-//import java.io.BufferedReader;
-//import java.io.FileReader;
-//import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.File;
 
@@ -221,9 +218,8 @@ class CustomerSystem{
         StringBuilder sb = new StringBuilder();
 
 	//generate data file using try and catch
-        try (PrintWriter writer = new PrintWriter(new File(savedData))){
- 	    //declare new file name 
-            sb.append(customerInfo);
+        try (PrintWriter writer = new PrintWriter(new File(savedData))){ 
+	    sb.append(customerInfo);
             writer.write(sb.toString());
             writer.close();
         } catch (FileNotFoundException e) {
