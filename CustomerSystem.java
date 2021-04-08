@@ -103,18 +103,22 @@ class CustomerSystem{
         String tryPC= postalCode;
         String validity= "";
 	
-	//check postal code validity using try, catch, finally
+	//check postal code validity using try and catch
         try{
+	    //define and scan csv file
             Scanner inputStream = new Scanner(file);
 
+            //use while loop and substring to check the first 3 letters of the file
             while (inputStream.hasNext()){
                 String data = inputStream.next();
                 newString = data.substring(0,3);
+                //use if statement to compare userinput with csv file
                 if(tryPC.equals(newString)){
                     validity = "Valid";
                     break;
                 }
             }
+            //print the output statement
             System.out.println("Your Postal Code is "+ validity + ".");
             inputStream.close();
             
@@ -218,12 +222,15 @@ class CustomerSystem{
 
 	//generate data file using try and catch
         try {
+ 	    //declare new file name 
             savedData = new PrintWriter(new File("customerDataFile.csv"));
         } catch (FileNotFoundException e) {
             System.out.println("Customer Data File cannot be generated.");
         }
+        //create stringbuilder to build new strings
         StringBuilder sb = new StringBuilder();
-        sb.append(firstName + ", " + lastName + ", " + postalCode + ", " + cardNum);
+        //print out saved data
+        sb.append(firstName + ", " + lastName + ", " + city + ", " + postalCode + ", " + cardNum);
         savedData.write(sb.toString());
         savedData.close();
         System.out.println("Customer Data File has been generated.");
