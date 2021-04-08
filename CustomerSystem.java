@@ -17,7 +17,6 @@ class CustomerSystem{
     static String firstName;
     static String lastName;
     static String postalCode;
-    //static String cardNum;
 	static String validCreditCard;
     public static void main(String[] args){
         // Please do not edit any of these variables
