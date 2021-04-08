@@ -106,7 +106,7 @@ class CustomerSystem{
 
             //use while loop and substring to check the first 3 letters of the file
             while (inputStream.hasNext()){
-                String data = inputStream.next();
+                String data = inputStream.nextLine();
                 newString = data.substring(0,3);
                 //use if statement to compare userinput with csv file
                 if(pC.equals(newString)){
@@ -214,23 +214,24 @@ class CustomerSystem{
     public static void generateCustomerDataFile(String customerInfo){
 	//generate method for generating customer csv data file
 	    
-        PrintWriter savedData = null;
+        Scanner reader = new Scanner(System.in);
+        //prompt user to input file name
+        System.out.println("What would you like to name your file?");
+        String savedData = reader.nextLine();
+        StringBuilder sb = new StringBuilder();
 
 	//generate data file using try and catch
-        try {
+        try (PrintWriter writer = new PrintWriter(new File(savedData))){
  	    //declare new file name 
-            savedData = new PrintWriter(new File("customerDataFile.csv"));
+            sb.append(customerInfo);
+            writer.write(sb.toString());
+            writer.close();
         } catch (FileNotFoundException e) {
             System.out.println("Customer Data File cannot be generated.");
         }
-        //create stringbuilder to build new strings
-        //StringBuilder sb = new StringBuilder();
-        //print out saved data
-        //sb.append(firstName + ", " + lastName + ", " + city + ", " + postalCode + ", " + validCreditCard);
-        savedData.write(customerInfo);
-        savedData.close();
+        reader.close();
         System.out.println("Customer Data File has been generated.");
-    
+        printMenu();
     }
 	
     /*******************************************************************
