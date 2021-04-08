@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch CustomerSystem",
+            "request": "launch",
+            "mainClass": "CustomerSystem",
+            "projectName": "Java programs_42876f4e"
+        },
+        {
+            "type": "java",
+            "name": "Launch reverseString",
+            "request": "launch",
+            "mainClass": "reverseString",
+            "projectName": "Java programs_42876f4e"
+        },
+        {
+            "type": "java",
             "name": "Launch Out3",
             "request": "launch",
             "mainClass": "Out3",

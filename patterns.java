@@ -1,21 +1,27 @@
 public class patterns {
     public static void main(String[] args){ 
-        //Your program must depend on the variable called height 
-        int height = 5; 
-        String symb = "+";
-
-        // i loop 
-        // i loop is responsible for printing the desired number of lines 
-        for (int i= 0; i < height; i++){ 
-            // j loop 
-            // j loops is responsible for the content of each line 
-            //System.out.println("i: " + i);
-           // System.out.println("Enter j loop");
-            for (int j = 0; j < i+1; j++){ 
-                System.out.print(symb);
-            }
-            //Outside of j loop 
-            System.out.println(); // responsible for creating a new line 
+        int cardNum = 123456789;
+        String reverseString = "";
+        int index = -2;
+        int sumOddReverse = 0;
+        while(cardNum!= 0){
+            int digit = cardNum % 10; 
+            reverseString = reverseString + String.valueOf(digit);
+            cardNum /=10;   
+             
         }
+        
+        System.out.println(reverseString);
+        double reverseStringLoop= reverseString.length();
+        System.out.println(reverseStringLoop);
+        
+        for (int i = 1; i <= reverseStringLoop/2 + 0.5; i ++ ){
+            char oddReverse = reverseString.charAt(index += 2); 
+            int oddReverseMath = Character.getNumericValue(oddReverse);
+            sumOddReverse += oddReverseMath; 
+            
+        }
+        
+        System.out.println("The sum of odd numbers " + sumOddReverse);
     }
 }
