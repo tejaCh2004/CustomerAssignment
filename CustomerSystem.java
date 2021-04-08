@@ -13,13 +13,6 @@ import java.io.PrintWriter;
 import java.io.File;
 
 class CustomerSystem{
-    //Declaration of variables
-    static String firstName;
-    static String lastName;
-    static String city;
-    static String postalCode;
-	static String validCreditCard;
-    static Scanner reader1 = new Scanner(System.in);
     public static void main(String[] args){
         // Please do not edit any of these variables
         Scanner reader = new Scanner(System.in);
@@ -28,8 +21,9 @@ class CustomerSystem{
         generateCustomerOption = "2";
         exitCondition = "9";
 
-        // More variables for the main may be declared in the space below.
 
+        // More variables for the main may be declared in the space below.
+        String customerInfo = "";
         
         do{
             printMenu();                                    // Printing out the main menu
@@ -39,11 +33,11 @@ class CustomerSystem{
                 // Only the line below may be editted based on the parameter list and how you design the method return
 		        // Any necessary variables may be added to this if section, but nowhere else in the code
               
-                enterCustomerInfo();
+                customerInfo=enterCustomerInfo();
             }
             else if (userInput.equals(generateCustomerOption)) {
                 // Only the line below may be editted based on the parameter list and how you design the method return
-                generateCustomerDataFile();
+                generateCustomerDataFile(customerInfo);
             }
             else{
                 System.out.println("Please type in a valid option (A number from 1-9)");
@@ -52,7 +46,7 @@ class CustomerSystem{
         } while (!userInput.equals(exitCondition));         // Exits once the user types 
         
         reader.close();
-        reader1.close();
+        
         System.out.println("Program Terminated");
     }
     
@@ -72,20 +66,22 @@ class CustomerSystem{
     * This method may also be broken down further depending on your algorithm
     */
     
-    public static void enterCustomerInfo() {
+    public static String enterCustomerInfo() {
         //User Inputs 
-        //Scanner reader = new Scanner(System.in);
+        Scanner reader = new Scanner(System.in);
         System.out.println("What is your first name? ");
-        firstName = reader1.nextLine(); 
+        String firstName = reader.nextLine(); 
         System.out.println("What is your last name? ");
-        lastName = reader1.nextLine();
+        String lastName = reader.nextLine();
         System.out.println("Please Enter Your City ");
-        city = reader1.nextLine();
+        String city = reader.nextLine();
         System.out.println("What is your postal code? ");
-        postalCode = reader1.nextLine();
+        String postalCode = reader.nextLine();
         validatePostalCode(postalCode);
         //call method creditCard()
-        creditCard();    
+        String validCreditCard=creditCard();
+        String customerInfo=(firstName+" " +lastName+" "+ city + " " + postalCode +" "+ validCreditCard);
+        return(customerInfo);
     }
     
     /*
@@ -143,6 +139,7 @@ class CustomerSystem{
         int indexValue=cardNum.length()-1;
         String cardReverse="";
         int totalSum = 0; 
+        String validCreditCard= "";
         
         //Use a for loop to iterate the Value of the credit card backwards. 
         for(int i=0;i<cardNum.length();i++){
@@ -214,7 +211,7 @@ class CustomerSystem{
     * The method may not nesessarily be a void return type
     * This method may also be broken down further depending on your algorithm
     */
-    public static void generateCustomerDataFile(){
+    public static void generateCustomerDataFile(String customerInfo){
 	//generate method for generating customer csv data file
 	    
         PrintWriter savedData = null;
@@ -227,10 +224,10 @@ class CustomerSystem{
             System.out.println("Customer Data File cannot be generated.");
         }
         //create stringbuilder to build new strings
-        StringBuilder sb = new StringBuilder();
+        //StringBuilder sb = new StringBuilder();
         //print out saved data
-        sb.append(firstName + ", " + lastName + ", " + city + ", " + postalCode + ", " + validCreditCard);
-        savedData.write(sb.toString());
+        //sb.append(firstName + ", " + lastName + ", " + city + ", " + postalCode + ", " + validCreditCard);
+        savedData.write(customerInfo);
         savedData.close();
         System.out.println("Customer Data File has been generated.");
     
@@ -239,11 +236,12 @@ class CustomerSystem{
     /*******************************************************************
     *       ADDITIONAL METHODS MAY BE ADDED BELOW IF NECESSARY         *
     *******************************************************************/
-    public static void creditCard(){
-        //Scanner reader = new Scanner(System.in);
+    public static String creditCard(){
+        String validCreditCard="";
+        Scanner reader = new Scanner(System.in);
         System.out.println("What is your Credit Card Number? ");
         //User inputs his/her credit card number  
-        String cardNum = reader1.nextLine(); 
+        String cardNum = reader.nextLine(); 
         //Remove spaces, increase the use them
         cardNum = cardNum.replaceAll("\\s", "");
         //Card must be at least 9 characters long 
@@ -253,8 +251,9 @@ class CustomerSystem{
         }
         //if card is at least 9 characters long, call method validCreditCard(cardnum) and store valid credit card value in variable validCreditCard. 
         else if(cardNum.length() >= 9){
-           validCreditCard=validateCreditCard(cardNum); 
+            validCreditCard=validateCreditCard(cardNum); 
         }
+        return(validCreditCard);
     }
     
 } 
