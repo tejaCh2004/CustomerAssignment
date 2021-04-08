@@ -225,7 +225,6 @@ class CustomerSystem{
         } catch (FileNotFoundException e) {
             System.out.println("Customer Data File cannot be generated.");
         }
-        reader.close();
         System.out.println("Customer Data File has been generated.");
         printMenu();
     }
