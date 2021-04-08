@@ -100,8 +100,8 @@ class CustomerSystem{
         String fileName = "postal_codes.csv";
         File file = new File(fileName);
         String newString;
-        String tryPC= postalCode;
-        String validity= "";
+        String pC= postalCode;
+        String validity= "Invalid";
 	
 	//check postal code validity using try and catch
         try{
@@ -113,7 +113,7 @@ class CustomerSystem{
                 String data = inputStream.next();
                 newString = data.substring(0,3);
                 //use if statement to compare userinput with csv file
-                if(tryPC.equals(newString)){
+                if(pC.equals(newString)){
                     validity = "Valid";
                     break;
                 }
