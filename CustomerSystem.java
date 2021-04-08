@@ -13,10 +13,12 @@ import java.io.PrintWriter;
 import java.io.File;
 
 class CustomerSystem{
+    //Declaration of variables
     static String firstName;
     static String lastName;
     static String postalCode;
     static String cardNum;
+    static String city;
 	
     public static void main(String[] args){
         // Please do not edit any of these variables
@@ -70,18 +72,19 @@ class CustomerSystem{
     */
     
     public static void enterCustomerInfo() {
+        //User Inputs 
         Scanner reader = new Scanner(System.in);
         System.out.println("What is your first name? ");
         firstName = reader.nextLine(); 
         System.out.println("What is your last name? ");
         lastName = reader.nextLine();
+        System.out.println("Please enter your City. ");
+        city = reader.nextLine();
         System.out.println("What is your postal code? ");
         postalCode = reader.nextLine();
+        //call method creditCard()
         creditCard();
-       
-        //System.out.println(validCreditCard);
-        
-       // reader1.close(); 
+         
         
     }
     
@@ -125,6 +128,7 @@ class CustomerSystem{
     * This method may also be broken down further depending on your algorithm
     */
     public static String validateCreditCard(String cardNum){
+        //Initialize variables which are doing to be used in this method 
         int oddReverseSum = 0; 
         int evenReverseSum = 0; 
         int Digit1 = 0;
@@ -136,44 +140,50 @@ class CustomerSystem{
         String cardReverse="";
         int totalSum = 0; 
         
+        //Use a for loop to iterate the Value of the credit card backwards. 
         for(int i=0;i<cardNum.length();i++){
             cardReverse = cardReverse + cardNum.charAt(indexValue); 
             indexValue=indexValue-1 ;             
              
         }
-
-        //System.out.println(cardReverse);
-       
+        // for loop for the sum of the odd and even positioned values on the credit card
         for(int j=0; j < cardReverse.length() ; j ++){
-            
+            // Sum of the odd positioned values on the credit card(Backwards).
             if (j % 2 == 0){
+                //since the cardReverse is type string, convert it to char value first 
                 char oddReverse = cardReverse.charAt(j);
+                //Obtain the numeric value of char oddReverse, in order to perform addition 
+                //Sum of the odd positioned digits.
                 oddReverseSum += Character.getNumericValue(oddReverse);
-                //oddReverseSum += oddReverse;  
             }
-            
+            //Sum of even positioned values on the credit card (Backwards).
             if (j % 2 != 0){ 
+                 //since the cardReverse is type string, convert it to char value first 
                 char evenReverse = cardReverse.charAt(j); 
-                //System.out.print(evenReverse + " , ");
+                //obtain the numeric value of char evenReverse.
                 evenReverseSum = Character.getNumericValue(evenReverse);
+                //Double the digits
                 evenReverseSum = evenReverseSum * 2; 
-                
+                //If the doubled digits are greater than 9 
                 if(evenReverseSum > 9){
+                    // spilt the digits using the mod and division operands 
                     Digit1 = evenReverseSum % 10; 
                     Digit2 = evenReverseSum / 10; 
+                    //Partial sum of the broken down digits 
                     int partialSum = Digit1 + Digit2;
                     partialEvenSum += partialSum;
                 }
+                //If the doubled digit is 9 or less, carry on the value. 
                 else if(evenReverseSum <= 9){ 
                     unchangedEvenSum += evenReverseSum;
                 }
+                // Sum of the even positioned digits. 
                 SumOfNewEvenDigits = unchangedEvenSum + partialEvenSum;
             }
         }
-        //System.out.println("The sum of the odd digits is: " + oddReverseSum); 
-        //System.out.println("The sum of the Even digits is: " + SumOfNewEvenDigits);
+        //Total sum of the odd and even positioned digits 
         totalSum = oddReverseSum + SumOfNewEvenDigits; 
-        //System.out.println("TotalSum is: " + totalSum);
+        //Check to see if the last digit of the final sum is 0 or not.
         String cardIndex = Integer.toString(totalSum);
         char lastIndex = cardIndex.charAt(cardIndex.length() -1);
         int lastIndexNum = Character.getNumericValue(lastIndex);
@@ -181,16 +191,18 @@ class CustomerSystem{
         
         
         String validCreditCard= "";
+        // Card validation 
+        // card not valid if it ends with 0 
         if(lastIndexNum != 0){ 
             System.out.println("Your Card Number is invalid, please re-enter. ");
             creditCard();
-        }
+        }// if card is valid 
         else if(lastIndexNum == 0){
             
             System.out.println("Your Card is Valid. "); 
+            
             validCreditCard = cardNum;
         } 
-        //System.out.println(validCreditCard);
         return(validCreditCard);
         
     }
@@ -223,17 +235,19 @@ class CustomerSystem{
     public static void creditCard(){
         Scanner reader = new Scanner(System.in);
         System.out.println("What is your Credit Card Number? ");
+        //User inputs his/her credit card number  
         String cardNum = reader.nextLine(); 
+        //Remove spaces, increase the use them
         cardNum = cardNum.replaceAll("\\s", "");
+        //Card must be at least 9 characters long 
         if(cardNum.length() < 9 ){
             System.out.println("Your Card Number is invalid. Number must be at least 9 digits. Please re-enter. ");
             creditCard();
         }
+        //if card is at least 9 characters long, call method validCreditCard(cardnum) and store valid credit card value in variable validCreditCard. 
         else if(cardNum.length() >= 9){
-           String validCreditCard=validateCreditCard(cardNum); 
-           //System.out.println(validCreditCard);  
+           String validCreditCard=validateCreditCard(cardNum);  
         }
-       // reader2.close();
     }
     
 } 
