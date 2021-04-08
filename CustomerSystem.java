@@ -16,6 +16,7 @@ class CustomerSystem{
     //Declaration of variables
     static String firstName;
     static String lastName;
+    static String city;
     static String postalCode;
 	static String validCreditCard;
     public static void main(String[] args){
@@ -76,6 +77,8 @@ class CustomerSystem{
         firstName = reader.nextLine(); 
         System.out.println("What is your last name? ");
         lastName = reader.nextLine();
+        System.out.println("Please Enter Your City ");
+        city = reader.nextLine();
         System.out.println("What is your postal code? ");
         postalCode = reader.nextLine();
         validatePostalCode(postalCode);
@@ -225,12 +228,9 @@ class CustomerSystem{
         }
         //create stringbuilder to build new strings
         StringBuilder sb = new StringBuilder();
-<<<<<<< HEAD
         sb.append(firstName + ", " + lastName + ", " + postalCode + ", " + validCreditCard);
-=======
         //print out saved data
-        sb.append(firstName + ", " + lastName + ", " + city + ", " + postalCode + ", " + cardNum);
->>>>>>> 9eb2a972d176d7d82101fe8fbdf5ff75619d7a7e
+        sb.append(firstName + ", " + lastName + ", " + city + ", " + postalCode + ", " + validCreditCard);
         savedData.write(sb.toString());
         savedData.close();
         System.out.println("Customer Data File has been generated.");
