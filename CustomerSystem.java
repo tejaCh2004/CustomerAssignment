@@ -17,9 +17,8 @@ class CustomerSystem{
     static String firstName;
     static String lastName;
     static String postalCode;
-    static String cardNum;
-    static String city;
-	
+    //static String cardNum;
+	static String validCreditCard;
     public static void main(String[] args){
         // Please do not edit any of these variables
         Scanner reader = new Scanner(System.in);
@@ -78,10 +77,9 @@ class CustomerSystem{
         firstName = reader.nextLine(); 
         System.out.println("What is your last name? ");
         lastName = reader.nextLine();
-        System.out.println("Please enter your City. ");
-        city = reader.nextLine();
         System.out.println("What is your postal code? ");
         postalCode = reader.nextLine();
+        validatePostalCode(postalCode);
         //call method creditCard()
         creditCard();
          
@@ -190,7 +188,6 @@ class CustomerSystem{
        // System.out.println(lastIndex);
         
         
-        String validCreditCard= "";
         // Card validation 
         // card not valid if it ends with 0 
         if(lastIndexNum != 0){ 
@@ -223,10 +220,11 @@ class CustomerSystem{
             System.out.println("Customer Data File cannot be generated.");
         }
         StringBuilder sb = new StringBuilder();
-        sb.append(firstName + ", " + lastName + ", " + postalCode + ", " + cardNum);
+        sb.append(firstName + ", " + lastName + ", " + postalCode + ", " + validCreditCard);
         savedData.write(sb.toString());
         savedData.close();
         System.out.println("Customer Data File has been generated.");
+    
     }
 	
     /*******************************************************************
@@ -246,7 +244,7 @@ class CustomerSystem{
         }
         //if card is at least 9 characters long, call method validCreditCard(cardnum) and store valid credit card value in variable validCreditCard. 
         else if(cardNum.length() >= 9){
-           String validCreditCard=validateCreditCard(cardNum);  
+           validCreditCard=validateCreditCard(cardNum); 
         }
     }
     
